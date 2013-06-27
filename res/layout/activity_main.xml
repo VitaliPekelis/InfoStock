@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="center"
+    android:background="#5656FF"
+    android:orientation="vertical"
+    android:weightSum="3" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#5656FF"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/imb_SecuritiesIsrael"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ImageButton10"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:src="@drawable/bb4" />
+
+        <ImageButton
+            android:id="@+id/imb_IndicesOthers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/calc"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:src="@drawable/bb1" />
+
+        <ImageButton
+            android:id="@+id/imb_IndicesIsrael"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="showIndicesListIsrael"
+            android:src="@drawable/bb3" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#5656FF"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/calc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="start"
+            android:src="@drawable/bb7" />
+
+        <ImageButton
+            android:id="@+id/imb_Products"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ImageButton03"
+            android:layout_below="@+id/ImageButton03"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/bb6" />
+
+        <ImageButton
+            android:id="@+id/imb_ForeignCur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/calc"
+            android:layout_alignTop="@+id/commodity"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/bb5" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="#5656FF"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/img_myCase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/ImageButton03"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:src="@drawable/bb2" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,37 @@
+package com.example.ifinance2;
+
+
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Intent;
+import android.view.Menu;
+import android.view.View;
+
+public class FirstActivity extends Activity { 
+
+	
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+       
+    }
+    
+    public void showIndicesListIsrael(View v){
+		Intent myIntent = new Intent(FirstActivity.this, ListActivityIndices.class);
+		startActivity(myIntent);
+	}
+    
+    public void start (View v){
+    	new DownloadGrafIndices(getApplicationContext()).myOnClick();
+    }
+    
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.activity_main, menu);
+		return true;
+	}
+
+}

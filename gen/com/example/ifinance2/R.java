@@ -12,6 +12,10 @@ public final class R {
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
+
+         Customize dimensions originally defined in res/values/dimens.xml (such as
+         screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
+    
          */
         public static final int activity_horizontal_margin=0x7f040000;
         public static final int activity_vertical_margin=0x7f040001;
@@ -30,38 +34,49 @@ public final class R {
         public static final int stock=0x7f02000a;
     }
     public static final class id {
-        public static final int ImageButton03=0x7f080006;
-        public static final int ImageButton10=0x7f080001;
-        public static final int action_settings=0x7f080011;
-        public static final int calc=0x7f080003;
-        public static final int commodity=0x7f080008;
-        public static final int imb_ForeignCur=0x7f080007;
-        public static final int imb_IndicesIsrael=0x7f080004;
-        public static final int imb_IndicesOthers=0x7f080002;
-        public static final int imb_Products=0x7f080005;
-        public static final int imb_SecuritiesIsrael=0x7f080000;
-        public static final int img_myCase=0x7f080009;
-        public static final int iv_iconChange=0x7f08000a;
-        public static final int logo=0x7f08000f;
-        public static final int menu_settings=0x7f080010;
-        public static final int tv_ChangeIndice=0x7f08000b;
-        public static final int tv_LastIndexIndice=0x7f08000c;
-        public static final int tv_date=0x7f08000e;
-        public static final int tv_nameIndice=0x7f08000d;
+        public static final int ImageButton03=0x7f08000d;
+        public static final int ImageButton10=0x7f080008;
+        public static final int action_settings=0x7f080018;
+        public static final int bt_Gragh=0x7f080005;
+        public static final int bt_HistoryData=0x7f080006;
+        public static final int calc=0x7f08000a;
+        public static final int commodity=0x7f08000f;
+        public static final int imb_ForeignCur=0x7f08000e;
+        public static final int imb_IndicesIsrael=0x7f08000b;
+        public static final int imb_IndicesOthers=0x7f080009;
+        public static final int imb_Products=0x7f08000c;
+        public static final int imb_SecuritiesIsrael=0x7f080007;
+        public static final int img_myCase=0x7f080010;
+        public static final int iv_iconChange=0x7f080011;
+        public static final int iv_iconChange1=0x7f080000;
+        public static final int logo=0x7f080016;
+        public static final int menu_settings=0x7f080017;
+        public static final int tv_ChangeIndice=0x7f080012;
+        public static final int tv_ChangeIndice1=0x7f080001;
+        public static final int tv_LastIndexIndice=0x7f080013;
+        public static final int tv_LastIndexIndice1=0x7f080002;
+        public static final int tv_date=0x7f080015;
+        public static final int tv_date1=0x7f080004;
+        public static final int tv_nameIndice=0x7f080014;
+        public static final int tv_nameIndice1=0x7f080003;
     }
     public static final class layout {
-        public static final int activity_main=0x7f030000;
-        public static final int indice_israel_list=0x7f030001;
-        public static final int logo=0x7f030002;
+        public static final int activity_choice=0x7f030000;
+        public static final int activity_main=0x7f030001;
+        public static final int indice_israel_list=0x7f030002;
+        public static final int logo=0x7f030003;
     }
     public static final class menu {
         public static final int activity_main=0x7f070000;
-        public static final int list_activity_indices=0x7f070001;
+        public static final int choice=0x7f070001;
+        public static final int list_activity_indices=0x7f070002;
     }
     public static final class string {
         public static final int action_settings=0x7f050003;
         public static final int app_name=0x7f050000;
+        public static final int hello_world=0x7f050005;
         public static final int menu_settings=0x7f050001;
+        public static final int title_activity_choice=0x7f050004;
         public static final int title_activity_list_activity_indices=0x7f050002;
     }
     public static final class style {

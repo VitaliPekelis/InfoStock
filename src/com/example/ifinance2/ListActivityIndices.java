@@ -2,6 +2,7 @@ package com.example.ifinance2;
 
 import android.app.ListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -34,18 +35,20 @@ public class ListActivityIndices extends ListActivity {
 	    
 		TextView nameItem= (TextView) v.findViewById(R.id.tv_nameIndice);
 		String nameIndice=(String) nameItem.getText();
+		
 	    Toast.makeText(this," selected"+ "\n" +nameIndice+" "+keyword,Toast.LENGTH_LONG).show();  //test
 	    
-//	   switch (key) {
-//	case value:
-//		
-//		break;
-//
-//	default:
-//		break;
-//	}
+	    String name =    mi.getmNameIndice();
+	    String lastIndex=mi.getmLastIndex();
+	    String changeRate=mi.getmChangeRate();
+	    String idI =mi.getmId();
 	    
-	    
+	    Intent intent=new Intent(this,ChoiceActivity.class);
+	    intent.putExtra("nName", name);
+	    intent.putExtra("nLastInd", lastIndex);
+	    intent.putExtra("nChangeR", changeRate);
+	    intent.putExtra("nIdI", idI);
+	    startActivity(intent);
 	}
 	
 }

@@ -101,7 +101,7 @@ public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Void, Void> {
 			MarketIndice tempIndice = new MarketIndice();
 			arrayString = mDataIndices.get(i);
 			mNamesIndices[i] = arrayString[0];
-			tempIndice.setmNameIndex(arrayString[0]);
+			tempIndice.setmNameIndice(arrayString[0]);
 			tempIndice.setmLastIndex(arrayString[1]);
 			tempIndice.setmChangeRate(arrayString[2]);
 			tempIndice.setmDateRefresh(mAsOfTheDate);

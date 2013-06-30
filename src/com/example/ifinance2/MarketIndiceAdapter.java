@@ -92,7 +92,7 @@ public class MarketIndiceAdapter extends BaseAdapter {
 
 	private void setIdToIndice(ArrayList<MarketIndice> list) {
 		for (MarketIndice marketIndice : list) {
-			String key = marketIndice.getmNameIndex();
+			String key = marketIndice.getmNameIndice();
 			
 			String id = null;
 			if(mMapIDs.containsKey(key)){
@@ -137,7 +137,7 @@ public class MarketIndiceAdapter extends BaseAdapter {
 		}
 
 		TextView tvNameI = (TextView) rowVeiw.findViewById(R.id.tv_nameIndice);
-		tvNameI.setText(mArrayIndices.get(position).getmNameIndex());
+		tvNameI.setText(mArrayIndices.get(position).getmNameIndice());
 
 		TextView tvIndexI = (TextView) rowVeiw
 				.findViewById(R.id.tv_LastIndexIndice);

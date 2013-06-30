@@ -63,7 +63,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
-        android:hint="Date" />
+        android:hint="Date"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/holo_purple" />
 
 </LinearLayout>
     

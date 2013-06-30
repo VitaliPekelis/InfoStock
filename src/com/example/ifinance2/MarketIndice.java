@@ -5,9 +5,9 @@ import java.util.Date;
 public class MarketIndice {
 	private   String  mLastIndex;
 	private   String  mNameIndice;
-	private   String    mDateRefresh;
-	private   String   mChangeRate;
-	private   Integer  mId;
+	private   String  mDateRefresh;
+	private   String  mChangeRate;
+	private   String  mId;
 	
 	//constructors
 	
@@ -61,10 +61,10 @@ public class MarketIndice {
 	public void setmNameIndice(String mNameIndice) {
 		this.mNameIndice = mNameIndice;
 	}
-	public Integer getmId() {
+	public String getmId() {
 		return mId;
 	}
-	public void setmId(Integer mId) {
+	public void setmId(String mId) {
 		this.mId = mId;
 	}
 	

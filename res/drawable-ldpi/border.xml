@@ -1,11 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" >
 
-    <shape xmlns:android="http://schemas.android.com/apk/res/android"> 
-    <stroke android:width="4dp" android:color="#000000" /> 
-    <solid android:color="#ffffff" /> 
-    <padding android:left="3dp" android:top="3dp" 
-            android:right="3dp" android:bottom="3dp" /> 
-    <corners android:radius="4dp" /> 
+    <!--size
+       <android:height="integer"
+        android:width="integer" /-->
+
+    <!--  corners
+        android:bottomLeftRadius=""
+        android:bottomRightRadius=""
+        android:radius=""
+        android:topLeftRadius=""
+        android:topRightRadius="" /-->
+
+    <gradient
+        android:startColor="#FFADFF2F"
+        android:endColor="#FF00BFFF"
+        android:angle="90"	/>						<!-- android:angle
+													Integer. The angle for the gradient, in degrees.
+												 0 is left to right,
+												 90 is bottom to top. 
+												 It must be a multiple of 45. 
+												 Default is 0. -->
+         
+        
+      <!--false=""
+        linear=""
+        radial=""
+        sweep=""
+        true=""
+        android:type="["
+        android:useLevel="["
+        android:centerColor="integer"
+        android:centerX="integer"
+        android:centerY="integer"
+       
+        -->
+        
+         
+
+    <stroke
+        android:dashWidth="2dp"
+        android:dashGap="2dp"
+        android:width="1dp"
+        android:color="#000000" />
+
+    <!--  solid android:color="#00ffff" />  צבע יחיד backgraund-->
+
+    <padding
+        android:bottom="5dp"
+        android:dashGap="5dp"
+        android:left="5dp"
+        android:right="5dp"
+        android:top="5dp" />
+
+    <corners android:radius="0dp" />
+
 </shape>
-
-

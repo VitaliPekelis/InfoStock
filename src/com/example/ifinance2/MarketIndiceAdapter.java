@@ -28,7 +28,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import au.com.bytecode.opencsv.CSVReader;
+
 
 public class MarketIndiceAdapter extends BaseAdapter {
 	private Context mContext;

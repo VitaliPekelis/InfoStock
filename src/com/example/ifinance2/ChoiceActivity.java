@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.TextView;
 
 public class ChoiceActivity extends Activity {
@@ -37,6 +38,12 @@ private String idIndice=null;
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.choice, menu);
 		return true;
+	}
+	
+	public void goToGraph(View v){
+		Intent intent=new Intent(this,GraphActivity.class);
+		startActivity(intent);
+		
 	}
 
 }

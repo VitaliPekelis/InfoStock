@@ -20,6 +20,7 @@ private String idIndice=null;
 		String lastIndex = i.getExtras().getString("nLastInd");
 		String changeRate = i.getExtras().getString("nChangeR");
 		String idI = i.getExtras().getString("nIdI");
+		String date =i.getExtras().getString("date");
 		
 		TextView tv=(TextView) findViewById(R.id.tv_nameIndice1);
 		tv.setText(name);
@@ -27,6 +28,8 @@ private String idIndice=null;
 		tv2.setText(lastIndex);
 		TextView tv3=(TextView) findViewById(R.id.tv_ChangeIndice1);
 		tv3.setText(changeRate);
+		TextView tv4=(TextView) findViewById(R.id.tv_date1);
+		tv4.setText(date);
 		idIndice=idI;
 		
 		
@@ -42,6 +45,7 @@ private String idIndice=null;
 	
 	public void goToGraph(View v){
 		Intent intent=new Intent(this,GraphActivity.class);
+		intent.putExtra("idIndice", idIndice);
 		startActivity(intent);
 		
 	}

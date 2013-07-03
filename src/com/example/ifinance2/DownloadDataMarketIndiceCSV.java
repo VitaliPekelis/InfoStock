@@ -23,8 +23,6 @@ public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Void, Void> {
 	private  String                  mAsOfTheDate;
 	private  ArrayList<MarketIndice> mArrayIndices;
 	private  String[]                mNamesIndices;
-	
-	
 	private LinkedList<String>       mData;
 	private ListActivity             mListActivity;
 	

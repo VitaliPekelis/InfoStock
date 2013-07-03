@@ -15,47 +15,89 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <Button
-                android:layout_width="fill_parent"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/menu_settings" />
+                android:layout_gravity="center"
+                android:background="@drawable/stroke"
+                android:gravity="center"
+                android:text="תבחר תקופת זמן"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/activity_horizontal_margin" />
+
+            <Spinner
+                android:id="@+id/sp_period"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/stroke"
+                android:gravity="center"
+                android:text="תבחר תדירות הגרף"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/activity_horizontal_margin" />
 
             <RadioGroup
-               
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
                 <RadioButton
-                    android:id="@+id/radio_pirates"
+                    android:id="@+id/rb_daily"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
-                    android:text="pirates" />
+                    android:text="יומי" />
 
                 <RadioButton
-                    android:id="@+id/radio_ninjas"
+                    android:id="@+id/rb_weekly"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:onClick="onRadioButtonClicked"
-                    android:text="ninjas" />
+                    android:text="שבועי" />
+
+                <RadioButton
+                    android:id="@+id/rb_monthly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="חודשי" />
+
+                <RadioButton
+                    android:id="@+id/rb_annual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButtonClicked"
+                    android:text="שנתי" />
             </RadioGroup>
-            
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/stroke"
+                android:gravity="center"
+                android:text="תבחר הצמדה"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/activity_horizontal_margin" />
+
+            <ToggleButton
+                android:id="@+id/togb_isdolar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onToggleClicked"
+                android:textOff="נומינלי"
+                android:textOn="בדולארים" />
+
         </LinearLayout>
     </ScrollView>
 
     <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
-
-        <Button
-            android:id="@+id/bt_swipe"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:onClick="swipeMenu"
-            android:text="swipe" />
     </RelativeLayout>
 
 </com.agimind.widget.SlideHolder>

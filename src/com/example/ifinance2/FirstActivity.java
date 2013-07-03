@@ -22,11 +22,7 @@ public class FirstActivity extends Activity {
 		Intent myIntent = new Intent(FirstActivity.this, ListActivityIndices.class);
 		startActivity(myIntent);
 	}
-    
-    public void start (View v){
-    	new DownloadGrafIndices(getApplicationContext()).myOnClick();
-    }
-    
+   
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

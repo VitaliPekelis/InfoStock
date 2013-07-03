@@ -20,6 +20,7 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -149,6 +150,16 @@ public class MarketIndiceAdapter extends BaseAdapter {
 
 		ImageView ivIconChange = (ImageView) rowVeiw
 				.findViewById(R.id.iv_iconChange);
+		
+		double changeRate = mArrayIndices.get(position).getmChangeRate();
+		if( changeRate <=0){
+			ivIconChange.setImageResource(R.drawable.arrow_downe);
+			tvChangeI.setTextColor(Color.RED);
+		}else{
+			ivIconChange.setImageResource(R.drawable.arrow_up);
+			tvChangeI.setTextColor(Color.GREEN);
+		}
+		
 		TextView tvDateI = (TextView) rowVeiw.findViewById(R.id.tv_date);
 		tvDateI.setText(mArrayIndices.get(position).getmDateRefresh());
 

@@ -31,7 +31,7 @@ public class ListActivityIndices extends ListActivity {
 		MarketIndice mi = (MarketIndice) this.getListAdapter().getItem(position);  //get MarketIndice object
 	    String name =    mi.getmNameIndice();
 	    String lastIndex=mi.getmLastIndex();
-	    String changeRate=mi.getmChangeRate();
+	    double changeRate=mi.getmChangeRate();
 	    String idI =mi.getmId();
 	    String date = mi.getmDateRefresh();
 	    

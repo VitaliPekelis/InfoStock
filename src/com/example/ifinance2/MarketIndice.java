@@ -6,7 +6,7 @@ public class MarketIndice {
 	private   String  mLastIndex;
 	private   String  mNameIndice;
 	private   String  mDateRefresh;
-	private   String  mChangeRate;
+	private   double  mChangeRate;
 	private   String  mId;
 	
 	//constructors
@@ -15,7 +15,7 @@ public class MarketIndice {
 	{
 		
 	}
-	public MarketIndice(String mLastIndex, String mNameIndice, String mDateRefresh,String mChangeRate) 
+	public MarketIndice(String mLastIndex, String mNameIndice, String mDateRefresh,double mChangeRate) 
 	{
 		super();
 		this.mLastIndex = mLastIndex;
@@ -41,10 +41,10 @@ public class MarketIndice {
 	public void setmDateRefresh(String mDateRefresh) {
 		this.mDateRefresh = mDateRefresh;
 	}
-	public String getmChangeRate() {
+	public double getmChangeRate() {
 		return mChangeRate;
 	}
-	public void setmChangeRate(String mChangeRate) {
+	public void setmChangeRate(double mChangeRate) {
 		this.mChangeRate = mChangeRate;
 	}
 	public String getmId() {

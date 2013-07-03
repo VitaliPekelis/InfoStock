@@ -90,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:onClick="onToggleClicked"
                 android:textOff="נומינלי"
-                android:textOn="בדולארים" />
+                android:textOn="בדולארים"
+                 />
 
         </LinearLayout>
     </ScrollView>

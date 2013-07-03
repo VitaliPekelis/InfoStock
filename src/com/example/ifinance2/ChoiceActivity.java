@@ -2,9 +2,11 @@ package com.example.ifinance2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ChoiceActivity extends Activity {
@@ -18,7 +20,7 @@ private String idIndice=null;
 		
 		String name = i.getExtras().getString("nName"); 
 		String lastIndex = i.getExtras().getString("nLastInd");
-		String changeRate = i.getExtras().getString("nChangeR");
+		double changeRate = i.getExtras().getDouble("nChangeR");
 		String idI = i.getExtras().getString("nIdI");
 		String date =i.getExtras().getString("date");
 		
@@ -27,9 +29,20 @@ private String idIndice=null;
 		TextView tv2=(TextView) findViewById(R.id.tv_LastIndexIndice1);
 		tv2.setText(lastIndex);
 		TextView tv3=(TextView) findViewById(R.id.tv_ChangeIndice1);
-		tv3.setText(changeRate);
+		ImageView iv=(ImageView)findViewById(R.id.iv_iconChange1);
+		if(changeRate<=0){
+			tv3.setText(""+(changeRate));
+			tv3.setTextColor(Color.RED);
+			iv.setImageResource(R.drawable.arrow_downe);
+		}else{
+			tv3.setText(""+(changeRate)+" %");
+			tv3.setTextColor(Color.GREEN);
+			iv.setImageResource(R.drawable.arrow_up);
+		}
+		
 		TextView tv4=(TextView) findViewById(R.id.tv_date1);
 		tv4.setText(date);
+		
 		idIndice=idI;
 		
 		

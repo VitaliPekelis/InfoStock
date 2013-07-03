@@ -30,8 +30,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.agimind.widget.SlideHolder;
 
@@ -39,7 +41,9 @@ public class GraphActivity extends Activity {
 	private SlideHolder mSlideHolder;
 	private String      mPeriod;
 	private Spinner     mSpinner;
-	private String		mIdIndice;
+	private String		mIdIndice=null;
+	private String      mIsDollar=null;
+	private String      mFrequency=null;
 
 	/*
 	 * toggleView can actually be any view you want. Here, for simplicity, we're
@@ -54,15 +58,24 @@ public class GraphActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
-		Intent i=getIntent();
-		mIdIndice=i.getExtras().getString("idIndice");
-		mSlideHolder = (SlideHolder) findViewById(R.id.slideHolder);
-		mSlideHolder.setDirection(SlideHolder.DIRECTION_RIGHT);
+		toGetIntent();
+		mIsDollar="IsDollar=False";
+		mFrequency="intFrequency1=0";
+		initSlider();
 		addItemsOnSpinner();
-		mSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
-
 	}
 
+	private void initSlider() {
+		mSlideHolder = (SlideHolder) findViewById(R.id.slideHolder);
+		mSlideHolder.setDirection(SlideHolder.DIRECTION_RIGHT);
+		
+	}
+
+	private void toGetIntent() {
+		Intent i=getIntent();
+		mIdIndice=i.getExtras().getString("idIndice");
+	}
+	
 	private void addItemsOnSpinner() {
 		mSpinner = (Spinner) findViewById(R.id.sp_period);
 		List<String> list = new ArrayList<String>();
@@ -78,38 +91,99 @@ public class GraphActivity extends Activity {
 		dataAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinner.setAdapter(dataAdapter);
-
+		mSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
 	}
-
+	
+	public void onToggleClicked(View view) {
+	    // Is the toggle on?
+	    boolean on =  ((ToggleButton) view).isChecked();
+	    
+	    if (on) {
+	    	mIsDollar="IsDollar=True";
+	    } else {
+	    	mIsDollar="IsDollar=False";
+	    }
+	   
+	}
+	
+	public void onRadioButtonClicked(View view) {
+	    // Is the button now checked?
+	    boolean checked = ((RadioButton) view).isChecked();
+	    
+	    // Check which radio button was clicked
+	    switch(view.getId()) {
+	        case R.id.rb_daily:
+	            if (checked)
+	            	mFrequency="intFrequency1=0";
+	            break;
+	        case R.id.rb_weekly:
+	            if (checked)
+	            	mFrequency="intFrequency1=1";
+	            break;
+	        case R.id.rb_monthly:
+	            if (checked)
+	            	mFrequency="intFrequency1=2";
+	            break;
+	        case R.id.rb_annual:
+	            if (checked)
+	            	mFrequency="intFrequency1=3";
+	            break;
+	    }
+	}
 	// /************************************************************************************************
 
 	public class CustomOnItemSelectedListener implements OnItemSelectedListener {
-
+		
+		
 		public void onItemSelected(AdapterView<?> parent, View view,
 				int position, long id) {
-			//Toast.makeText(parent.getContext(),"OnItemSelectedListener : "+ parent.getItemAtPosition(position).toString(),	Toast.LENGTH_SHORT).show();// test OnItemSelectedListener
+			RadioButton rb=(RadioButton) findViewById(R.id.rb_annual);
+			RadioButton rb1=(RadioButton) findViewById(R.id.rb_monthly);
+			RadioButton rb2=(RadioButton) findViewById(R.id.rb_weekly);
+			
 				switch ((int)id) {
 				case 1:
-					mPeriod="intPeriod=1";//ום מסחר אחרון
+					mPeriod="intPeriod=1";//חודש אחרון
+					rb2.setEnabled(true);
+					rb1.setEnabled(false);
+					rb.setEnabled(false);
 					break;
 				case 2:
-					mPeriod="intPeriod=2";//חודש אחרון
+					mPeriod="intPeriod=2";//3 חודשים
+					rb2.setEnabled(true);
+					rb1.setEnabled(false);
+					rb.setEnabled(false);
 					break;
 				case 3:
-					mPeriod="intPeriod=3";//3 חודשים
+					mPeriod="intPeriod=3";//6 חודשים
+					rb2.setEnabled(true);
+					rb1.setEnabled(true);
+					rb.setEnabled(false);
 					break;
 				case 4:
-					mPeriod="intPeriod=4";//6 חודשים
+					mPeriod="intPeriod=4";//שנה
+					rb2.setEnabled(true);
+					rb1.setEnabled(true);
+					rb.setEnabled(false);
 					break;
 				case 5:
-					mPeriod="intPeriod=5";//שנה
+					mPeriod="intPeriod=6";//3 שנים
+					rb2.setEnabled(true);
+					rb1.setEnabled(true);
+					rb.setEnabled(true);
 					break;
 				case 6:
-					mPeriod="intPeriod=6";//3 שנים
+					mPeriod="intPeriod=7";//5 שנים
+					rb2.setEnabled(true);
+					rb1.setEnabled(true);
+					rb.setEnabled(true);
 					break;
 				
 				default:
-					mPeriod="intPeriod=0";//5 שנים
+					mPeriod="intPeriod=0";//יום מסחר אחרון
+					rb2.setEnabled(false);
+					rb1.setEnabled(false);
+					rb.setEnabled(false);
 					break;
 				}
 				Toast.makeText(parent.getContext(),mPeriod,	Toast.LENGTH_LONG).show();

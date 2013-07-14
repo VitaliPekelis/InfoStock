@@ -34,7 +34,8 @@
         </activity>
         <activity
             android:name="com.example.ifinance2.ListActivityIndices"
-            android:label="@string/title_activity_list_activity_indices" >
+            android:label="@string/title_activity_list_activity_indices"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.ifinance2.ChoiceActivity"

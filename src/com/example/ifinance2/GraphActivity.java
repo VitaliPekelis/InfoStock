@@ -6,7 +6,10 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.Charset;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,15 +45,15 @@ import android.widget.ToggleButton;
 import com.agimind.widget.SlideHolder;
 
 public class GraphActivity extends Activity {
-	private ProgressDialog     mProDialog;
-	private SlideHolder        mSlideHolder;
-	private String             mPeriod;
-	private Spinner            mSpinner;
-	private String             mIdIndice = null;
-	private String             mIsDollar = null;
-	private String             mFrequency = null;
-	private LinkedList<String> mData_Y;
-	private LinkedList<String> mIndex_X;
+	private ProgressDialog mProDialog;
+	private SlideHolder mSlideHolder;
+	private String mPeriod;
+	private Spinner mSpinner;
+	private String mIdIndice = null;
+	private String mIsDollar = null;
+	private String mFrequency = null;
+	private LinkedList<Date> mDate_Y;
+	private LinkedList<Double> mIndex_X;
 
 	/*
 	 * toggleView can actually be any view you want. Here, for simplicity, we're
@@ -69,11 +72,11 @@ public class GraphActivity extends Activity {
 		toGetIntent();
 		setParametersToBuildUri();
 		new DownloadGrafIndices(this).execute();
-		
-		mProDialog=new ProgressDialog(GraphActivity.this);
+
+		mProDialog = new ProgressDialog(GraphActivity.this);
 		mProDialog.setMessage("Loading... Please wait");
 		mProDialog.show();
-		
+
 		initSlider();
 		addItemsOnSpinner();
 		biuldgraph();
@@ -116,7 +119,7 @@ public class GraphActivity extends Activity {
 
 	private void biuldgraph() {
 		Graph graph = new Graph();
-		GraphicalView gview = graph.getView(this);
+		GraphicalView gview = graph.getView(this,mDate_Y,mIndex_X);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph);
 		layout.addView(gview);
 	}
@@ -320,25 +323,40 @@ public class GraphActivity extends Activity {
 		protected void onPostExecute(Void result) {
 			String CSV_SEPARATOR = ",";
 
-			mData_Y = new LinkedList<String>();
-			mIndex_X = new LinkedList<String>();
+			mDate_Y = new LinkedList<Date>();
+			mIndex_X = new LinkedList<Double>();
 			mData.removeFirst();
 
 			for (String string : mData) {
 				if (string != "") {
 					String[] stringArray = string.split(CSV_SEPARATOR);
-					mData_Y.add(stringArray[0]);
-					mIndex_X.add(stringArray[1]);
+					mDate_Y.add(convertToDate(stringArray[0]));
+					mIndex_X.add(Double.parseDouble(stringArray[1]));
 				}
 			}
 
-			System.out.println("mData_Y "+mData_Y);// test
-			System.out.println("mIndex_X "+mIndex_X);// test
-			
-			if(mProDialog.isShowing()){
+			if (mProDialog.isShowing()) {
 				mProDialog.dismiss();
 			}
 			super.onPostExecute(result);
+		}
+
+		private Date convertToDate(String str) {
+
+			SimpleDateFormat format;
+			Date date = null;
+			try {
+				if (mPeriod.equals("intPeriod=1")) {
+					format = new SimpleDateFormat("HH:mm:ss '-' dd/MM/yy");
+				} else {
+					format = new SimpleDateFormat("dd/MM/yy");
+				}
+				date = format.parse(str);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return date;
 		}
 
 	}// end of class DownloadGrafIndices

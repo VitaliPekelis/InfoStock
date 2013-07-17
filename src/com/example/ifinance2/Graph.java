@@ -44,7 +44,7 @@ public class Graph extends AbstractDemoChart {
 	 *            the context
 	 * @return the built intent
 	 */
-	public GraphicalView getView(Context context) {
+	public GraphicalView getView(Context context,List<Date> Mdates, List<Double> Mvalues) {
 		String[] titles = new String[] { "Name of graph rashum lemata " };
 		
 		List<Date[]> dates = new ArrayList<Date[]>();         //zir Y
@@ -71,7 +71,7 @@ public class Graph extends AbstractDemoChart {
 		
 		XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
 		
-		setChartSettings(renderer, "Sales growth", "Date", "%",
+		setChartSettings(renderer, "Name of Indice", "תאריך", "מדד",
 				dateValues[0].getTime(),
 				dateValues[dateValues.length - 1].getTime(), -4, 11,
 				Color.GRAY, Color.LTGRAY);

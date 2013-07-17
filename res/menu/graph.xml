@@ -6,6 +6,11 @@
         android:orderInCategory="100"
         android:showAsAction="always"
         android:icon="@drawable/action_settings1"
-        android:title="Refresh"/>
+        android:title="Settings"/>
+  <item
+        android:id="@+id/action_settings1"
+        android:orderInCategory="99"
+        android:showAsAction="always"
+        android:title="עדכן גרף"/>
 </menu>
 

@@ -2,7 +2,6 @@ package com.example.ifinance2;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,19 +13,19 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.ListActivity;
-import android.app.ProgressDialog;
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.widget.Toast;
 
-public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Integer, Void> {
+public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Void, Void> {
 	private String                  mAsOfTheDate;
 	private ArrayList<MarketIndice> mArrayIndices;
 	private String[]                mNamesIndices;
 	private LinkedList<String>      mData;
 	private ListActivity            mListActivity;
-	private int                     progress_status;
-	
-	
+
 	public DownloadDataMarketIndiceCSV(ListActivity list) {
 		this.mListActivity = (ListActivityIndices) list;
 		
@@ -45,7 +44,12 @@ public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Integer, Void
 		HttpGet request = new HttpGet(params[0]);
 		String userAgentExplorer10_6 = "Mozilla/5.0 (compatible; MSIE 10.6; Windows NT 6.1; Trident/5.0; InfoPath.2; SLCC1; .NET CLR 3.0.4506.2152; .NET CLR 3.5.30729; .NET CLR 2.0.50727) 3gpp-gba UNTRUSTED/1.0";
 		request.setHeader("User-Agent", userAgentExplorer10_6);
-		StringBuilder stringBuilder = new StringBuilder();
+		
+		ConnectivityManager connMgr = (ConnectivityManager) mListActivity
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		if (networkInfo != null && networkInfo.isConnected()) {
 		try {
 			HttpResponse response = client.execute(request);
 			
@@ -57,24 +61,25 @@ public class DownloadDataMarketIndiceCSV extends AsyncTask<String, Integer, Void
 			String line = "";
 
 			while ((line = reader.readLine()) != null) {
-				stringBuilder.append(line);
+			
 				mData.add(line);
-				publishProgress(progress_status);
+
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("Have a problem !!!");
 		}
+		
+		} else {
+			Toast.makeText(mListActivity, "An Error has Occurred ",
+					Toast.LENGTH_LONG).show();
+			// display error
+		}
 
 		return null;
 	}
 
-	protected void onProgressUpdate(Integer... values) {
-		// TODO Auto-generated method stub
-		((ListActivityIndices) mListActivity).getmProDialog().setProgress(values[0]);
-		super.onProgressUpdate(values);
-	}
 
 	protected void onPostExecute(Void result) {
 		String CSV_SEPARATOR = ",";

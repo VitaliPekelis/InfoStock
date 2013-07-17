@@ -95,10 +95,12 @@
 
         </LinearLayout>
     </ScrollView>
-
-    <RelativeLayout
+<!-- From here Activity layout ********************************************************************************** -->
+    <LinearLayout
+        android:id="@+id/graph"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" >
-    </RelativeLayout>
+        android:layout_height="fill_parent"
+        android:orientation="horizontal" >
+    </LinearLayout>
 
 </com.agimind.widget.SlideHolder>

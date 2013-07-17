@@ -19,8 +19,6 @@ public class ListActivityIndices extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
-		
-		
 		String urlMarketIndiceCSVFull = "http://www.tase.co.il/_layouts/Tase/ManagementPages/Export.aspx?sn=none&enumTblType=IndexChanges&Columns=noneColumns&Titles=noneTitles&TblId=0&action=1&GroupId=4&day=1&GridId=13&CurGuid=%7B88D94BDD-ADB5-42FB-BA3D-35EBD9259DE9%7D&ExportType=3";
 		new DownloadDataMarketIndiceCSV(ListActivityIndices.this).execute(urlMarketIndiceCSVFull);
 		mProDialog=new ProgressDialog(ListActivityIndices.this);

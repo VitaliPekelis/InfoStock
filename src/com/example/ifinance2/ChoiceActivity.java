@@ -11,21 +11,21 @@ import android.widget.TextView;
 
 public class ChoiceActivity extends Activity {
 private String idIndice=null;
-
+private String mNameInd=null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choice);
 		Intent i=getIntent();
 		
-		String name = i.getExtras().getString("nName"); 
+		mNameInd = i.getExtras().getString("nName"); 
 		String lastIndex = i.getExtras().getString("nLastInd");
 		double changeRate = i.getExtras().getDouble("nChangeR");
 		String idI = i.getExtras().getString("nIdI");
 		String date =i.getExtras().getString("date");
 		
 		TextView tv=(TextView) findViewById(R.id.tv_nameIndice1);
-		tv.setText(name);
+		tv.setText(mNameInd);
 		TextView tv2=(TextView) findViewById(R.id.tv_LastIndexIndice1);
 		tv2.setText(lastIndex);
 		TextView tv3=(TextView) findViewById(R.id.tv_ChangeIndice1);
@@ -59,6 +59,7 @@ private String idIndice=null;
 	public void goToGraph(View v){
 		Intent intent=new Intent(this,GraphActivity.class);
 		intent.putExtra("idIndice", idIndice);
+		intent.putExtra("nameIndice", mNameInd);
 		startActivity(intent);
 		
 	}

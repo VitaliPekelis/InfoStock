@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 
 import org.achartengine.GraphicalView;
 import org.apache.http.Header;
@@ -46,6 +47,7 @@ import com.agimind.widget.SlideHolder;
 
 public class GraphActivity extends Activity {
 	private ProgressDialog mProDialog;
+	private String         mNameIndice;
 	private SlideHolder mSlideHolder;
 	private String mPeriod;
 	private Spinner mSpinner;
@@ -79,19 +81,20 @@ public class GraphActivity extends Activity {
 
 		initSlider();
 		addItemsOnSpinner();
-		biuldgraph();
-
+		
+		
 	}
 
 	private void toGetIntent() {
 		Intent i = getIntent();
 		mIdIndice = i.getExtras().getString("idIndice");
+		mNameIndice=i.getExtras().getString("nameIndice");
 	}
 
 	private void setParametersToBuildUri() {
 		mIsDollar = "IsDollar=False";
 		mFrequency = "intFrequency1=0";
-		mPeriod = "intPeriod=0";
+		mPeriod = "intPeriod=1";
 	}
 
 	private void initSlider() {
@@ -119,7 +122,7 @@ public class GraphActivity extends Activity {
 
 	private void biuldgraph() {
 		Graph graph = new Graph();
-		GraphicalView gview = graph.getView(this,mDate_Y,mIndex_X);
+		GraphicalView gview = graph.getView(this,mDate_Y,mIndex_X,mNameIndice);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph);
 		layout.addView(gview);
 	}
@@ -209,12 +212,12 @@ public class GraphActivity extends Activity {
 				rb.setEnabled(true);
 				break;
 
-			default:
-				mPeriod = "intPeriod=0";// יום מסחר אחרון
-				rb2.setEnabled(false);
-				rb1.setEnabled(false);
-				rb.setEnabled(false);
-				break;
+//			default:
+//				mPeriod = "intPeriod=0";// יום מסחר אחרון
+//				rb2.setEnabled(false);
+//				rb1.setEnabled(false);
+//				rb.setEnabled(false);
+//				break;
 			}
 
 		}
@@ -338,7 +341,9 @@ public class GraphActivity extends Activity {
 			if (mProDialog.isShowing()) {
 				mProDialog.dismiss();
 			}
+			
 			super.onPostExecute(result);
+			biuldgraph();
 		}
 
 		private Date convertToDate(String str) {
@@ -346,10 +351,10 @@ public class GraphActivity extends Activity {
 			SimpleDateFormat format;
 			Date date = null;
 			try {
-				if (mPeriod.equals("intPeriod=1")) {
-					format = new SimpleDateFormat("HH:mm:ss '-' dd/MM/yy");
+				if (mPeriod.equals("intPeriod=0")) {
+					format = new SimpleDateFormat("HH:mm:ss '-' dd/MM/yy",Locale.getDefault());
 				} else {
-					format = new SimpleDateFormat("dd/MM/yy");
+					format = new SimpleDateFormat("dd/MM/yy",Locale.getDefault());
 				}
 				date = format.parse(str);
 			} catch (ParseException e) {

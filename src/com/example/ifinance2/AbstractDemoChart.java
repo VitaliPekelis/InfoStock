@@ -74,12 +74,16 @@ public abstract class AbstractDemoChart implements IDemoChart {
 		renderer.setChartTitleTextSize(20);// 20
 		renderer.setLabelsTextSize(12);// 15
 		renderer.setLegendTextSize(18);// 15
-		renderer.setPointSize(5f);//5f
-		renderer.setMargins(new int[] { 24, 30, 0, 0 });// top, 30, 15, 20
+		renderer.setPointSize(3f);//5f
+		
+		renderer.setMargins(new int[] { 24, 35, 0, 0 });// top, 30, 15, 20
 		//int length = colors.length;
 		//for (int i = 0; i < length; i++) {
 			XYSeriesRenderer r = new XYSeriesRenderer();
 			
+			
+		   
+			r.setFillPoints(true);
 			r.setColor(colors);
 			r.setPointStyle(styles);
 			renderer.addSeriesRenderer(r);

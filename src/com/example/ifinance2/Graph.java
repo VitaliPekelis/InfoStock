@@ -17,6 +17,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint.Align;
 
 /**
  * Sales growth demo chart.
@@ -51,7 +52,7 @@ public class Graph extends AbstractDemoChart {
 		String title = nameIndic;
 		
 		int colors = Color.RED ;
-		PointStyle styles = PointStyle.POINT ;
+		PointStyle styles = PointStyle.CIRCLE ;
 		XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
 		setChartSettings(renderer,   //		renderer the renderer to set the properties to
 				nameIndic,   //		title the chart title
@@ -63,13 +64,15 @@ public class Graph extends AbstractDemoChart {
 				Color.LTGRAY);                                          //labelsColor the labels color
 		
 		renderer.setShowGrid(true);
-		renderer.setYLabels(10);
-		renderer.setXRoundedLabels(false);
+		renderer.setGridColor(Color.GREEN);
+		renderer.setXRoundedLabels(true);
+		renderer.setXLabelsAlign(Align.RIGHT);
+	    renderer.setYLabelsAlign(Align.RIGHT);
 		
 		
 
 		return ChartFactory.getTimeChartView(context,
-				buildDateDataset(title, mDates, mValues), renderer, "dd/MM/yyyy");
+				buildDateDataset(title, mDates, mValues), renderer, "dd/MM/yy");
 	}
 
 }

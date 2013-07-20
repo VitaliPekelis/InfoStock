@@ -46,20 +46,31 @@ import android.widget.ToggleButton;
 import com.agimind.widget.SlideHolder;
 
 public class GraphActivity extends Activity {
+	
+	//activity  
+	
 	private ProgressDialog mProDialog;
-	private String         mNameIndice;
+	private boolean        mIsUpdate=false;
+	
+	//slideMenu
+	
 	private SlideHolder mSlideHolder;
-	private String mPeriod;
-	private Spinner mSpinner;
-	private String mIdIndice = null;
-	private String mIsDollar = null;
-	private String mFrequency = null;
-	private LinkedList<Date> mDate_Y;
+	private Spinner     mSpinner;
+	
+	//graph
+	
+	private String             mNameIndice;
+	private String             mIdIndice = null;
+	private String             mIsDollar = "IsDollar=False";
+	private String             mFrequency = "intFrequency1=0";
+	private String             mPeriod= "intPeriod=1";
+	private LinkedList<Date>   mDate_Y;
 	private LinkedList<Double> mIndex_X;
+	private GraphicalView      gview;
+	Graph graph = new Graph();
 
 	/*
-	 * toggleView can actually be any view you want. Here, for simplicity, we're
-	 * using TextView, but you can easily replace it with button.
+	 * toggleView can actually be any view you want. 
 	 * 
 	 * Note, when menu opens our textView will become invisible, so it quite
 	 * pointless to assign toggle-event to it. In real app consider using UP
@@ -71,38 +82,31 @@ public class GraphActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_graph);
 
-		toGetIntent();
-		setParametersToBuildUri();
-		new DownloadGrafIndices(this).execute();
-
-		mProDialog = new ProgressDialog(GraphActivity.this);
-		mProDialog.setMessage("Loading... Please wait");
-		mProDialog.show();
-
-		initSlider();
-		addItemsOnSpinner();
-		
+		toGetIntentFromChoiceActivity();
+		initSliderMenu();
+		startDownloadDataToGraph();
 		
 	}
 
-	private void toGetIntent() {
+	private void startDownloadDataToGraph() {
+		new DownloadGrafIndices(this).execute();
+		mProDialog = new ProgressDialog(GraphActivity.this);
+		mProDialog.setMessage("Loading... Please wait");
+		mProDialog.show();
+		
+	}
+
+	private void toGetIntentFromChoiceActivity() {
 		Intent i = getIntent();
 		mIdIndice = i.getExtras().getString("idIndice");
 		mNameIndice=i.getExtras().getString("nameIndice");
 	}
 
-	private void setParametersToBuildUri() {
-		mIsDollar = "IsDollar=False";
-		mFrequency = "intFrequency1=0";
-		mPeriod = "intPeriod=1";
-	}
+	
 
-	private void initSlider() {
+	private void initSliderMenu() {
 		mSlideHolder = (SlideHolder) findViewById(R.id.slideHolder);
 		mSlideHolder.setDirection(SlideHolder.DIRECTION_RIGHT);
-	}
-
-	private void addItemsOnSpinner() {
 		mSpinner = (Spinner) findViewById(R.id.sp_period);
 		List<String> list = new ArrayList<String>();
 		list.add("יום מסחר אחרון");
@@ -118,19 +122,23 @@ public class GraphActivity extends Activity {
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinner.setAdapter(dataAdapter);
 		mSpinner.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+		
 	}
 
 	private void biuldgraph() {
-		Graph graph = new Graph();
-		GraphicalView gview = graph.getView(this,mDate_Y,mIndex_X,mNameIndice);
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph);
+		gview = graph.getView(this,mDate_Y,mIndex_X,mNameIndice);
+		
+		if(mIsUpdate){
+		layout.removeAllViews();
+		}
 		layout.addView(gview);
+		
 	}
 
 	public void onToggleClicked(View view) {
 		// Is the toggle on?
 		boolean on = ((ToggleButton) view).isChecked();
-
 		if (on) {
 			mIsDollar = "IsDollar=True";
 		} else {
@@ -162,6 +170,11 @@ public class GraphActivity extends Activity {
 				mFrequency = "intFrequency1=3";
 			break;
 		}
+	}
+	
+	public void updateGraph(){
+		mIsUpdate=true;
+		startDownloadDataToGraph();
 	}
 
 	// /************************************************************************************************
@@ -239,10 +252,6 @@ public class GraphActivity extends Activity {
 			this.mContext = context;
 		}
 
-		// public void myOnClick(){
-		// this.execute();
-		// }
-
 		@Override
 		protected Void doInBackground(Void... params) {
 
@@ -301,7 +310,7 @@ public class GraphActivity extends Activity {
 							new InputStreamReader(entity2.getContent(),
 									Charset.forName("windows-1255")));
 					String line = "";
-					mData = new LinkedList<String>();
+						mData = new LinkedList<String>();
 					while ((line = reader.readLine()) != null) {
 						mData.add(line);
 
@@ -344,6 +353,9 @@ public class GraphActivity extends Activity {
 			
 			super.onPostExecute(result);
 			biuldgraph();
+			
+			
+			
 		}
 
 		private Date convertToDate(String str) {
@@ -377,6 +389,8 @@ public class GraphActivity extends Activity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_settings1)
 			mSlideHolder.toggle();
+		if(item.getItemId()== R.id.action_updateGraph)
+			updateGraph();
 		return true;
 	}
 

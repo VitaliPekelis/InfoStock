@@ -12,18 +12,21 @@ import android.widget.TextView;
 public class ChoiceActivity extends Activity {
 private String idIndice=null;
 private String mNameInd=null;
+private String lastIndex=null;
+private String idI=null;
+private String date=null;
+private double changeRate=0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_choice);
-		Intent i=getIntent();
 		
-		mNameInd = i.getExtras().getString("nName"); 
-		String lastIndex = i.getExtras().getString("nLastInd");
-		double changeRate = i.getExtras().getDouble("nChangeR");
-		String idI = i.getExtras().getString("nIdI");
-		String date =i.getExtras().getString("date");
+		getIntentFromIndicesLA();
+		setAndFillFieldsViews();
 		
+	}
+
+	private void setAndFillFieldsViews() {
 		TextView tv=(TextView) findViewById(R.id.tv_nameIndice1);
 		tv.setText(mNameInd);
 		TextView tv2=(TextView) findViewById(R.id.tv_LastIndexIndice1);
@@ -45,8 +48,15 @@ private String mNameInd=null;
 		
 		idIndice=idI;
 		
-		
-		
+	}
+
+	private void getIntentFromIndicesLA() {
+		Intent i=getIntent();
+		mNameInd = i.getExtras().getString("nName"); 
+		lastIndex = i.getExtras().getString("nLastInd");
+	    changeRate = i.getExtras().getDouble("nChangeR");
+	    idI = i.getExtras().getString("nIdI");
+	    date =i.getExtras().getString("date");
 	}
 
 	@Override

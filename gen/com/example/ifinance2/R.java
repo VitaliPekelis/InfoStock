@@ -42,6 +42,7 @@ public final class R {
         public static final int ImageButton10=0x7f080010;
         public static final int action_settings=0x7f080020;
         public static final int action_settings1=0x7f080021;
+        public static final int action_updateGraph=0x7f080022;
         public static final int bt_Gragh=0x7f080005;
         public static final int bt_HistoryData=0x7f080006;
         public static final int calc=0x7f080012;

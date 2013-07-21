@@ -17,8 +17,10 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        
         android:theme="@style/AppTheme" >
         <activity
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name="com.example.ifinance2.LogoActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
@@ -29,19 +31,23 @@
             </intent-filter>
         </activity>
         <activity
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name="com.example.ifinance2.FirstActivity"
             android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="com.example.ifinance2.ListActivityIndices"
-            android:label="@string/title_activity_list_activity_indices"
             android:screenOrientation="portrait" >
+           
         </activity>
+        
         <activity
+            android:theme="@android:style/Theme.Holo.NoActionBar"
             android:name="com.example.ifinance2.ChoiceActivity"
             android:label="@string/title_activity_choice" >
         </activity>
         <activity
+            android:theme="@android:style/Theme.Holo"
             android:name="com.example.ifinance2.GraphActivity"
             android:label="@string/title_activity_graph"
             android:screenOrientation="landscape" >

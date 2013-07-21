@@ -107,10 +107,11 @@ public class GraphActivity extends Activity {
 	private void initSliderMenu() {
 		mSlideHolder = (SlideHolder) findViewById(R.id.slideHolder);
 		mSlideHolder.setDirection(SlideHolder.DIRECTION_RIGHT);
+		
 		mSpinner = (Spinner) findViewById(R.id.sp_period);
 		List<String> list = new ArrayList<String>();
-		list.add("יום מסחר אחרון");
 		list.add("חודש אחרון");
+		list.add("יום מסחר אחרון");
 		list.add("3 חודשים");
 		list.add("6 חודשים");
 		list.add("שנה");
@@ -127,7 +128,7 @@ public class GraphActivity extends Activity {
 
 	private void biuldgraph() {
 		LinearLayout layout = (LinearLayout) findViewById(R.id.graph);
-		gview = graph.getView(this,mDate_Y,mIndex_X,mNameIndice);
+		gview = graph.getView(this,mDate_Y,mIndex_X,mNameIndice,mPeriod);
 		
 		if(mIsUpdate){
 		layout.removeAllViews();
@@ -188,9 +189,24 @@ public class GraphActivity extends Activity {
 			RadioButton rb2 = (RadioButton) findViewById(R.id.rb_weekly);
 
 			switch ((int) id) {
-			case 1:
+			case 0:
 				mPeriod = "intPeriod=1";// חודש אחרון
 				rb2.setEnabled(true);
+				rb1.setEnabled(false);
+				rb.setEnabled(false);
+				break;
+			case 1:
+				if(mNameIndice.equals("מק\"מ")){
+					mPeriod = "intPeriod=1";// יום מסחר אחרון
+					rb2.setEnabled(false);
+					rb1.setEnabled(false);
+					rb.setEnabled(false);
+					Toast.makeText(GraphActivity.this,"למק\"מ אין נתונים יומיים !", Toast.LENGTH_LONG).show();
+					break;
+				}
+				
+				mPeriod = "intPeriod=0";// יום מסחר אחרון
+				rb2.setEnabled(false);
 				rb1.setEnabled(false);
 				rb.setEnabled(false);
 				break;
@@ -225,12 +241,7 @@ public class GraphActivity extends Activity {
 				rb.setEnabled(true);
 				break;
 
-//			default:
-//				mPeriod = "intPeriod=0";// יום מסחר אחרון
-//				rb2.setEnabled(false);
-//				rb1.setEnabled(false);
-//				rb.setEnabled(false);
-//				break;
+			
 			}
 
 		}
@@ -388,7 +399,7 @@ public class GraphActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		if (item.getItemId() == R.id.action_settings1)
-			mSlideHolder.toggle();
+			mSlideHolder.toggleImmediately();
 		if(item.getItemId()== R.id.action_updateGraph)
 			updateGraph();
 		return true;

@@ -14,8 +14,8 @@
         android:topRightRadius="" /-->
 
     <gradient
-        android:startColor="#FFADFF2F"
-        android:endColor="#FF00BFFF"
+        android:startColor="#000000FF"
+        android:endColor="#FFFFFF8F"
         android:angle="90"	/>						<!-- android:angle
 													Integer. The angle for the gradient, in degrees.
 												 0 is left to right,
@@ -38,10 +38,9 @@
         -->
         
          
-
+<!--  android:dashWidth="2dp"
+        android:dashGap="2dp" -->
     <stroke
-        android:dashWidth="2dp"
-        android:dashGap="2dp"
         android:width="1dp"
         android:color="#000000" />
 

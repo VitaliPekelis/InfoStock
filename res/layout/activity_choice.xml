@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="right"
+    android:layout_gravity="center"
     android:gravity="center"
     android:orientation="vertical" >
 
@@ -78,12 +78,6 @@
             android:layout_height="wrap_content"
             android:onClick="goToGraph"
             android:text="גרף" />
-
-        <Button
-            android:id="@+id/bt_HistoryData"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="תונים היסטורים" />
 
     </LinearLayout>
 

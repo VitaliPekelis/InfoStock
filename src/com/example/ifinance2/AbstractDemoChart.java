@@ -1,5 +1,8 @@
 package com.example.ifinance2;
 
+import java.text.FieldPosition;
+import java.text.Format;
+import java.text.ParsePosition;
 import java.util.Date;
 import java.util.List;
 
@@ -15,6 +18,7 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.graphics.Color;
+import android.text.format.DateFormat;
 
 public abstract class AbstractDemoChart implements IDemoChart {
 
@@ -69,25 +73,21 @@ public abstract class AbstractDemoChart implements IDemoChart {
 
 	protected void setRenderer(XYMultipleSeriesRenderer renderer, int colors,
 			PointStyle styles) {
-		
+
 		renderer.setAxisTitleTextSize(16);// 16
 		renderer.setChartTitleTextSize(20);// 20
-		renderer.setLabelsTextSize(12);// 15
+		renderer.setLabelsTextSize(17);// 15
 		renderer.setLegendTextSize(18);// 15
-		renderer.setPointSize(3f);//5f
+		renderer.setPointSize(3f);// 5f
+		renderer.setMargins(new int[] { 24, 35, -10, 0 });// top, 30, 15, 20
 		
-		renderer.setMargins(new int[] { 24, 35, 0, 0 });// top, 30, 15, 20
-		//int length = colors.length;
-		//for (int i = 0; i < length; i++) {
-			XYSeriesRenderer r = new XYSeriesRenderer();
-			
-			
-		   
-			r.setFillPoints(true);
-			r.setColor(colors);
-			r.setPointStyle(styles);
-			renderer.addSeriesRenderer(r);
-		//}
+		XYSeriesRenderer r = new XYSeriesRenderer();
+		r.setDisplayBoundingPoints(true);
+		r.setFillPoints(true);
+		r.setColor(colors);
+		r.setPointStyle(styles);
+		renderer.addSeriesRenderer(r);
+
 	}
 
 	/**
@@ -115,8 +115,8 @@ public abstract class AbstractDemoChart implements IDemoChart {
 	 *            the labels color
 	 */
 	protected void setChartSettings(XYMultipleSeriesRenderer renderer,
-			String title, String xTitle, String yTitle, 
-			double yMin, double yMax, int axesColor, int labelsColor) {
+			String title, String xTitle, String yTitle, double yMin,
+			double yMax, int axesColor, int labelsColor) {
 		renderer.setChartTitle(title);
 		renderer.setXTitle(xTitle);
 		renderer.setYTitle(yTitle);
@@ -145,7 +145,7 @@ public abstract class AbstractDemoChart implements IDemoChart {
 			series.add(xValues.get(i), yValues.get(i));
 		}
 		dataset.addSeries(series);
-		
+
 		return dataset;
 	}
 

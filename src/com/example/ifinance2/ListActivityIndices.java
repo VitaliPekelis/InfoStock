@@ -1,15 +1,17 @@
 package com.example.ifinance2;
 
-import android.app.Dialog;
+import android.app.ActionBar;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 public class ListActivityIndices extends ListActivity {
 	private ProgressDialog  mProDialog;
@@ -19,6 +21,7 @@ public class ListActivityIndices extends ListActivity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		
+		showCusomActionBar();
 		String urlMarketIndiceCSVFull = "http://www.tase.co.il/_layouts/Tase/ManagementPages/Export.aspx?sn=none&enumTblType=IndexChanges&Columns=noneColumns&Titles=noneTitles&TblId=0&action=1&GroupId=4&day=1&GridId=13&CurGuid=%7B88D94BDD-ADB5-42FB-BA3D-35EBD9259DE9%7D&ExportType=3";
 		new DownloadDataMarketIndiceCSV(ListActivityIndices.this).execute(urlMarketIndiceCSVFull);
 		mProDialog=new ProgressDialog(ListActivityIndices.this);
@@ -26,6 +29,14 @@ public class ListActivityIndices extends ListActivity {
 		mProDialog.show();
 	}
 	
+	private void showCusomActionBar() {
+		ActionBar ab=getActionBar();
+	    Drawable d = getResources().getDrawable(android.R.drawable.title_bar_tall);
+		ab.setCustomView(R.layout.header_view);
+		ab.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM );
+		ab.setBackgroundDrawable(d);
+	}
+
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {       //  called when an item in the list is selected
 		// TODO Auto-generated method stub
@@ -57,6 +68,13 @@ public class ListActivityIndices extends ListActivity {
 
 	public void setmProDialog(ProgressDialog mProDialog) {
 		this.mProDialog = mProDialog;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		 MenuInflater inflater = getMenuInflater();
+		    inflater.inflate(R.menu.list_activity_indices, menu);
+		    return true;
 	}
 	
 }
